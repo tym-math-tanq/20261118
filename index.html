@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20261118 第2回成果報告会「星陵Day」研修会 ポータルサイト</title>
+  <style>
+    :root {
+      --primary: #D9531E;
+      --primary-dark: #B53E10;
+      --primary-light: #FFF3EB;
+      --primary-lighter: #FFF9F5;
+      --accent: #F57C00;
+      --accent-soft: #FFE0B2;
+      --text-main: #222222;
+      --text-sub: #555555;
+      --border: #E6D5C8;
+      --bg-body: #FAF6F3;
+      --bg-card: #FFFFFF;
+      --sidebar-width: 270px;
+      --shadow: 0 4px 14px rgba(181, 62, 16, 0.08);
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-body);
+      line-height: 1.7;
+    }
+
+    /* ヘッダー（総合教育センター形式） */
+    .top-header {
+      background: linear-gradient(135deg, #B53E10 0%, #D9531E 55%, #F57C00 100%);
+      color: #FFFFFF;
+      padding: 24px 28px;
+      border-bottom: 4px solid #8C2D08;
+      position: relative;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .header-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .header-badge {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+    }
+
+    .top-header h1 {
+      margin: 0 0 6px 0;
+      font-size: 1.45rem;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .header-subtitle {
+      margin: 0 0 10px 0;
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: #FFF3E0;
+    }
+
+    .header-meta {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.92);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    /* レイアウトコンテナ */
+    .layout-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      gap: 24px;
+      padding: 24px 20px 60px;
+      align-items: flex-start;
+    }
+
+    /* サイドバーナビゲーション */
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      position: sticky;
+      top: 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .sidebar-title {
+      background: var(--primary);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 8px 0;
+    }
+
+    .nav-list li a {
+      display: block;
+      padding: 10px 16px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-left: 4px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-list li a:hover,
+    .nav-list li a.active {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-left-color: var(--primary);
+    }
+
+    .nav-sub {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: var(--text-sub);
+      margin-top: 2px;
+    }
+
+    .sidebar-footer {
+      padding: 12px 16px;
+      background: var(--primary-lighter);
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    /* メインコンテンツ */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--primary-light);
+      border-bottom: 2px solid var(--primary);
+      padding: 16px 22px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--primary-dark);
+      font-weight: 800;
+    }
+
+    .section-body {
+      padding: 22px;
+    }
+
+    /* 強調ボックス・アラート */
+    .highlight-box {
+      background: var(--primary-lighter);
+      border-left: 5px solid var(--primary);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+    }
+
+    .highlight-box-title {
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .warning-box {
+      background: #FFF8E1;
+      border: 1px solid #FFE082;
+      border-left: 5px solid #F57C00;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.93rem;
+    }
+
+    /* ツールリンクグリッド */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .tool-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tool-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.05rem;
+      color: var(--primary-dark);
+    }
+
+    .tool-card ul {
+      margin: 0 0 14px 0;
+      padding-left: 18px;
+      font-size: 0.92rem;
+    }
+
+    .tool-card li {
+      margin-bottom: 6px;
+    }
+
+    /* ボタンスタイル */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: #FFFFFF;
+      color: var(--primary-dark);
+      border: 1.5px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.82rem;
+    }
+
+    /* 2枚画像プレビューグリッド */
+    .sample-images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 18px 0;
+    }
+
+    .image-preview-card {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: #FFFFFF;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-preview-header {
+      background: var(--primary-light);
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--primary-dark);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .image-thumb-wrap {
+      position: relative;
+      background: #F4EFEA;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: zoom-in;
+      padding: 10px;
+    }
+
+    .image-thumb-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      transition: transform 0.25s ease;
+    }
+
+    .image-thumb-wrap:hover img {
+      transform: scale(1.02);
+    }
+
+    .image-zoom-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(34, 34, 34, 0.78);
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .image-preview-footer {
+      padding: 12px 14px;
+      background: #FFFDFB;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* プロンプトボックス（ワンクリックコピー） */
+    .prompt-block {
+      border: 1px solid #DEC8B8;
+      border-radius: 8px;
+      background: #FFFDFB;
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .prompt-header {
+      background: #F7EAE0;
+      padding: 10px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #DEC8B8;
+    }
+
+    .prompt-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+    }
+
+    .copy-btn {
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 5px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .copy-btn.copied {
+      background: #2E7D32;
+    }
+
+    .prompt-text {
+      margin: 0;
+      padding: 16px;
+      font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #1F1F1F;
+      background: #FFFFFF;
+    }
+
+    /* ワーク2 選択式タブ */
+    .tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .tab-btn {
+      background: #F5EBE4;
+      color: var(--text-main);
+      border: 1px solid #DEC8B8;
+      border-radius: 6px;
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      background: var(--accent-soft);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* 対話ボックス */
+    .dialogue-box {
+      background: linear-gradient(to right, #FFF3E0, #FFF8E1);
+      border: 1.5px solid #FFB74D;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 20px;
+    }
+
+    .dialogue-box h4 {
+      margin: 0 0 6px 0;
+      color: #E65100;
+      font-size: 1rem;
+    }
+
+    /* マルチユースリスト */
+    .multiuse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .multiuse-item {
+      background: var(--primary-lighter);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .multiuse-item strong {
+      display: block;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .multiuse-item span {
+      font-size: 0.88rem;
+      color: var(--text-sub);
+    }
+
+    /* ステップリスト */
+    .step-list {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    .step-list li {
+      margin-bottom: 8px;
+    }
+
+    /* モーダル（画像拡大プレビュー用） */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #FFFFFF;
+      border-radius: 10px;
+      max-width: 92vw;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-header {
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 16px;
+      overflow: auto;
+      text-align: center;
+      background: #2B2B2B;
+    }
+
+    .modal-body img {
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+    }
+
+    /* トースト通知 */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #2E7D32;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+      z-index: 10000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* フッター */
+    .site-footer {
+      background: #3E2723;
+      color: #EFEBE9;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 900px) {
+      .layout-container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        position: static;
+      }
+      .nav-list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 8px;
+        gap: 6px;
+      }
+      .nav-list li {
+        flex: 1 1 calc(50% - 6px);
+      }
+      .nav-list li a {
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        border-radius: 6px;
+        background: #FAF6F3;
+        padding: 8px 10px;
+      }
+      .nav-list li a:hover,
+      .nav-list li a.active {
+        border-bottom-color: var(--primary);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- トップヘッダー -->
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="header-badge-row">
+        <span class="header-badge">高等学校DX加速化推進事業</span>
+        <span class="header-badge">生成AIパイロット校</span>
+        <span class="header-badge">三菱みらい育成財団</span>
+      </div>
+      <h1>20261118 第2回成果報告会「星陵Day」研修会</h1>
+      <p class="header-subtitle">「生成AIと歩む、これからの探究と校務の日常」</p>
+      <div class="header-meta">
+        <span>担当：外山 憲太（兵庫県立星陵高等学校）</span>
+        <span>会場：セミナールーム（南棟2階）</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- 左サイドバー目次（総合教育センター形式） -->
+    <aside class="sidebar">
+      <div class="sidebar-title">📋 研修メニュー（目次）</div>
+      <ul class="nav-list">
+        <li>
+          <a href="#intro">
+            【導入】研修の目的・AI環境
+            <span class="nav-sub">安全利用と3つの壁の突破</span>
+          </a>
+        </li>
+        <li>
+          <a href="#work1">
+            【ワーク１】プレチェック
+            <span class="nav-sub">公文書×絵入りチラシ認識確認</span>
+          </a>
+        </li>
+        <li>
+          <a href="#work2">
+            【ワーク２】業務・探究アレンジ
+            <span class="nav-sub">4つの選択式プロンプト</span>
+          </a>
+        </li>
+        <li>
+          <a href="#work3">
+            【ワーク３】NotebookLM
+            <span class="nav-sub">1ソース・マルチユース展開</span>
+          </a>
+        </li>
+        <li>
+          <a href="#work4">
+            【ワーク４】AIコーチ（Gem）
+            <span class="nav-sub">メタ壁打ちと生徒共有</span>
+          </a>
+        </li>
+        <li>
+          <a href="#summary">
+            【まとめ】教育資産化へ
+            <span class="nav-sub">スキル移行ガイド</span>
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        ※各プロンプトの「コピー」ボタンを押すと，そのままAIへ貼り付けできます。
+      </div>
+    </aside>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+
+      <!-- 【導入】 -->
+      <section id="intro" class="section-card">
+        <div class="section-header">
+          <h2><span class="section-tag">導入</span>研修の目的と安全な生成AIの利用環境</h2>
+        </div>
+        <div class="section-body">
+          <div class="highlight-box">
+            <div class="highlight-box-title">💡 本日の進め方とポータルサイトの活用</div>
+            <p style="margin: 0;">
+              さまざまな実践内容を知識としてお伝えします。30分という限られた時間の中ですべてをお伝えしたり演習したりすることはできないため，研修後もこのポータルサイトを見返してみてください！<br>
+              <strong>※このポータルサイト自体も，Geminiが数分で作成しました。</strong>
+            </p>
+          </div>
+
+          <p>
+            本校の生成AI活用調査では，回答者の<strong>約75％が「ほぼ毎日・週2〜3回」利用</strong>しており，業務時間の削減や精神的負担の軽減を実感しています。一方で，<strong>「ハルシネーション（AIの誤り）の確認に時間がかかる」「プロンプトの書き方が難しい」「個人情報・セキュリティが不安」</strong>という声も多く挙がっています。本日の研修では，この3つの壁を突破する実践の「型」を体験します。
+          </p>
+
+          <div class="tool-grid">
+            <div class="tool-card">
+              <div>
+                <h3>■ Gemini（Google）</h3>
+                <ul>
+                  <li>各学校のGoogleアカウントでGeminiを開くと，画面下に<strong>「兵庫県教育委員会事務局教育企画課 のチャットはモデルのトレーニングには使用されません。」</strong>と表示されます。入力内容が外部の学習に使われる心配はないため，安心して活用できます。</li>
+                  <li>ただし，学習に使用されない設定であっても，<strong>個人情報（生徒の氏名・成績など）の入力は禁止</strong>されています。</li>
+                  <li>GeminiはAIであり，誤った情報を出力することがあります。最終的な内容確認は必ず人間が行ってください。</li>
+                </ul>
+              </div>
+              <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                🚀 Gemini を開く（新しいタブ）
+              </a>
+            </div>
+
+            <div class="tool-card">
+              <div>
+                <h3>■ Copilot（Microsoft）</h3>
+                <ul>
+                  <li>学校や教育機関のMicrosoftアカウントでログインすると，<strong>商用データ保護（Enterprise Protection）</strong>が適用され，入力データがモデルのトレーニングに使用されるのを防ぎます。</li>
+                  <li>学校環境に合わせて使い分けることが可能です。</li>
+                </ul>
+              </div>
+              <a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                🌐 Copilot を開く（新しいタブ）
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 【ワーク１】 -->
+      <section id="work1" class="section-card">
+        <div class="section-header">
+          <h2><span class="section-tag">ワーク１</span>プレチェック（認識確認）：公文書×絵入りチラシの読み取り実験</h2>
+        </div>
+        <div class="section-body">
+          <div class="highlight-box">
+            <div class="highlight-box-title">🔑 〈今回の肝！〉いきなり作らせず，最初に「認識確認（プレチェック）」をする</div>
+            <p style="margin: 0;">
+              このワークは生成AIを使用するどんな場面でも使えます。最初に資料を添付して送信したら，生成AIに<strong>「いま，どのような認識をしていますか？」「不十分なことがあれば，出力の前に私に質問をしてください」</strong>と伝え，認識が一致していることを確認してから，目的の指示を入力します。<br>
+              画像やPDFを読み込ませるとき，いきなり指示するとそもそものファイルを誤認識して指示通りに回答しないことがあります。今回は<strong>「堅いテキスト（12月の生成AI研修会の公文書）」</strong>と<strong>「絵入りのビジュアル資料（チラシ）」</strong>の2枚を同時に読み込ませ，AIが文字情報とチラシの絵をどう言語化・認識するかを最初に確認します。
+            </p>
+          </div>
+
+          <h3>📂 ワーク用サンプル資料（2枚の画像を保存してAIに添付）</h3>
+          <p style="font-size: 0.92rem; color: var(--text-sub); margin-top: 0;">
+            以下の2枚の画像をクリックすると拡大プレビューできます。右クリックで画像を保存（またはGoogleドライブからダウンロード）し，2枚同時にGeminiへ添付してください。
+          </p>
+
+          <!-- 2枚画像プレビューエリア -->
+          <div class="sample-images-grid">
+            <!-- 資料①：公文書 -->
+            <div class="image-preview-card">
+              <div class="image-preview-header">
+                <span>① 12/17研修会 公文書（page-0001）</span>
+                <span style="font-size: 0.78rem; color: var(--primary);">テキスト中心</span>
+              </div>
+              <div class="image-thumb-wrap" onclick="openModal(this.querySelector('img').src, 'ワーク用サンプル資料①：12月生成AI研修会 公文書（page-0001）')">
+                <img
+                  src="./20261217【兵庫県立星陵高等学校】生成AI教員研修会・生徒講習会［生成AIパイロット校（校務利用）・高等学校DX加速化推進事業］_page-0001.jpg"
+                  onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=17XqBl6zxicZnOP77XNR5WRlt-yevtHS7&sz=w1200';"
+                  alt="12月生成AI研修会 公文書（page-0001）"
+                >
+                <span class="image-zoom-hint">🔍 クリックで拡大プレビュー</span>
+              </div>
+              <div class="image-preview-footer">
+                <button type="button" class="btn btn-outline btn-sm" onclick="openModal(this.closest('.image-preview-card').querySelector('img').src, 'ワーク用サンプル資料①：12月生成AI研修会 公文書（page-0001）')">
+                  🔍 拡大プレビュー
+                </button>
+                <a href="https://drive.google.com/file/d/17XqBl6zxicZnOP77XNR5WRlt-yevtHS7/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  🔗 Googleドライブで開く
+                </a>
+              </div>
+            </div>
+
+            <!-- 資料②：チラシ -->
+            <div class="image-preview-card">
+              <div class="image-preview-header">
+                <span>② 12/17研修会 チラシ（page-0002）</span>
+                <span style="font-size: 0.78rem; color: var(--primary);">イラスト入り</span>
+              </div>
+              <div class="image-thumb-wrap" onclick="openModal(this.querySelector('img').src, 'ワーク用サンプル資料②：12月生成AI研修会 チラシ（page-0002）')">
+                <img
+                  src="./20261217【兵庫県立星陵高等学校】生成AI教員研修会・生徒講習会［生成AIパイロット校（校務利用）・高等学校DX加速化推進事業］_page-0002.jpg"
+                  onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=12vz_cnY-TlKmdgAE_9xfM2NVx1rxsV5m&sz=w1200';"
+                  alt="12月生成AI研修会 チラシ（page-0002）"
+                >
+                <span class="image-zoom-hint">🔍 クリックで拡大プレビュー</span>
+              </div>
+              <div class="image-preview-footer">
+                <button type="button" class="btn btn-outline btn-sm" onclick="openModal(this.closest('.image-preview-card').querySelector('img').src, 'ワーク用サンプル資料②：12月生成AI研修会 チラシ（page-0002）')">
+                  🔍 拡大プレビュー
+                </button>
+                <a href="https://drive.google.com/file/d/12vz_cnY-TlKmdgAE_9xfM2NVx1rxsV5m/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  🔗 Googleドライブで開く
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- プレチェックプロンプト -->
+          <div class="prompt-block">
+            <div class="prompt-header">
+              <span class="prompt-title">● プレチェック（認識確認）プロンプト</span>
+              <button type="button" class="copy-btn" onclick="copyPrompt('prompt-w1', this)">📋 プロンプトをコピー</button>
+            </div>
+            <pre id="prompt-w1" class="prompt-text">添付した2つの資料（12月研修会の公文書・チラシ）を読み取り，以下の3点を出力してください。
+
+・公文書とチラシに記載されている基本情報（日時・場所・対象・内容・申込方法など）の正確なテキスト化
+・チラシに描かれている絵（イラスト）やデザインに何が描かれており，どんな印象を与えるかの簡潔な説明
+・2つの資料の間で読み取りにくかった箇所や，認識が不確実な点（あれば）
+
+※この段階では，まだ案内文や資料の作成は行わず，認識の確認のみを行ってください。</pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 【ワーク２】 -->
+      <section id="work2" class="section-card">
+        <div class="section-header">
+          <h2><span class="section-tag">ワーク２</span>公文書×チラシを活用した「校務リライト＆探究チラシ添削」</h2>
+        </div>
+        <div class="section-body">
+          <p>
+            <strong>※ワーク1で認識が揃ったら，同じチャットの続きに目的の指示を出します。</strong><br>
+            ご自身の立場や目的に合わせて，以下の<strong>4つの選択肢（①〜④）</strong>から選んで実行してください。すべてのプロンプトで「画面確認用プレビュー」「解説・注意点」「コピペ用プレーンテキスト」の3段階出力を行います。
+          </p>
+
+          <!-- タブ切り替えボタン -->
+          <div class="tab-bar" role="tablist">
+            <button type="button" class="tab-btn active" onclick="switchTab('w2-tab1', this)">① 参加呼びかけ文（情報発信）</button>
+            <button type="button" class="tab-btn" onclick="switchTab('w2-tab2', this)">② 矛盾・表記ゆれ点検（事務）</button>
+            <button type="button" class="tab-btn" onclick="switchTab('w2-tab3', this)">③ 出張理由＆伝達メモ（受講者）</button>
+            <button type="button" class="tab-btn" onclick="switchTab('w2-tab4', this)">④ 探究発表チラシ添削（探究応用）</button>
+          </div>
+
+          <!-- タブ① -->
+          <div id="w2-tab1" class="tab-panel active">
+            <div class="prompt-block">
+              <div class="prompt-header">
+                <span class="prompt-title">●〈校務・情報発信向け①〉校内の先生方が「行きたくなる」参加呼びかけ文の作成</span>
+                <button type="button" class="copy-btn" onclick="copyPrompt('prompt-w2-1', this)">📋 プロンプトをコピー</button>
+              </div>
+              <pre id="prompt-w2-1" class="prompt-text">添付した2つの資料（公文書・チラシ）の情報をもとに，校内の教職員へ参加を呼びかける案内文を作成してください。
+
+〈制約・調整条件〉
+・公文書にある正確な日時・対象・申込手順・締切を漏れなく盛り込んでください。
+・チラシのキャッチコピーやイラストが持つ親しみやすさ・見どころを言葉として取り入れ，多忙な先生方が「少し参加してみようかな」と思える前向きなトーンにしてください。
+
+〈出力形式〉以下の3つのステップ順で出力してください。
+・［画面確認用：案内文プレビュー］見出しや箇条書きを活用し，一目で内容が頭に入るよう美しく整形して表示してください。
+・［表現の意図 / 伝達リスクの指摘］チラシの要素をどう文章に活かしたかの解説と，申込漏れを防ぐために強調すべき注意点を出力してください。
+・［Classroom/メール コピペ用プレーンテキスト］マークダウン記号（#や**など）を使わず，Google Classroomや校内メールにそのまま貼り付けできるプレーンテキスト形式で出力してください。</pre>
+            </div>
+          </div>
+
+          <!-- タブ② -->
+          <div id="w2-tab2" class="tab-panel">
+            <div class="prompt-block">
+              <div class="prompt-header">
+                <span class="prompt-title">●〈校務・事務チェック向け②〉公文書とチラシの「矛盾・表記ゆれチェック」＆手続きリスト</span>
+                <button type="button" class="copy-btn" onclick="copyPrompt('prompt-w2-2', this)">📋 プロンプトをコピー</button>
+              </div>
+              <pre id="prompt-w2-2" class="prompt-text">添付した2つの資料（公文書・チラシ）の内容のみに基づいて回答してください。記載がない事項は「記載なし」と明記し，推測で補わないでください。
+2つの資料を突き合わせて点検したうえで，校内で参加申込・出張手続きを進めるためのチェックリストを作成してください。
+
+〈制約・調整条件〉
+・日時・会場・対象者・申込締切・持ち物などについて，公文書とチラシの間で食い違いや表記ゆれ・曖昧な点がないかを厳密にチェックしてください。
+・チラシのイラストやレイアウトが，公文書に記載された研修の趣旨と合致しているかについても客観的にレビューしてください。
+
+〈出力形式〉以下の3つのステップ順で出力してください。
+・［画面確認用：点検結果＆手続きチェックリスト］項目別の突合表と，担当者が進めるべき時系列チェックリストを表形式で美しく整形して表示してください。
+・［見落とし注意ポイント / 確認事項解説］問い合わせが来そうな曖昧な点や，事前確認すべきリスク点を箇条書きで解説してください。
+・［Word/Excel コピペ用プレーンテキスト］マークダウン記号（#や**など）を使わず，WordやExcelにそのまま貼り付けできるプレーンテキスト形式で出力してください。</pre>
+            </div>
+          </div>
+
+          <!-- タブ③ -->
+          <div id="w2-tab3" class="tab-panel">
+            <div class="prompt-block">
+              <div class="prompt-header">
+                <span class="prompt-title">●〈校務・受講者報告向け③〉出張伺い（起案）の理由文＆研修後の「伝達メモ」骨子作成</span>
+                <button type="button" class="copy-btn" onclick="copyPrompt('prompt-w2-3', this)">📋 プロンプトをコピー</button>
+              </div>
+              <pre id="prompt-w2-3" class="prompt-text">添付した2つの資料（公文書・チラシ）をもとに，この研修に参加する教員が管理職へ提出する「出張申請の理由文」と，受講後に学年・分掌で共有する「伝達報告メモの骨子」を作成してください。
+
+〈制約・調整条件〉
+・出張理由は，公文書の趣旨を踏まえ，自校の教育活動や校務改善にどう還元できるかが伝わる簡潔な公用文調にしてください。
+・伝達メモの骨子は，研修後にメモを書き込むだけでA4・1枚の報告書が完成するテンプレート形式にしてください。
+
+〈出力形式〉以下の3つのステップ順で出力してください。
+・［画面確認用：出張理由文＆伝達メモプレビュー］見出しと項目を整理して美しく表示してください。
+・［管理職・校内共有時のポイント］起案時に添えるべき補足事項や，校内還元時に押さえるべき視点を解説してください。
+・［起案システム/Word コピペ用プレーンテキスト］マークダウン記号（#や**など）を使わず，そのまま貼り付けできるプレーンテキスト形式で出力してください。</pre>
+            </div>
+          </div>
+
+          <!-- タブ④ -->
+          <div id="w2-tab4" class="tab-panel">
+            <div class="warning-box" style="margin-top: 0;">
+              <strong>🎓 探究指導への応用ポイント：</strong>今回の「テキスト資料（公文書）＋イラスト入りチラシ」の同時読み取りは，生徒が探究発表の要旨とポスター・チラシを作成した際の添削指導にそのまま応用できます。
+            </div>
+            <div class="prompt-block">
+              <div class="prompt-header">
+                <span class="prompt-title">●〈探究指導への応用④〉生徒が作った「探究発表要旨＋イラスト入りチラシ」の添削フィードバック</span>
+                <button type="button" class="copy-btn" onclick="copyPrompt('prompt-w2-4', this)">📋 プロンプトをコピー</button>
+              </div>
+              <pre id="prompt-w2-4" class="prompt-text">この2つの資料を「高校生が作成した探究発表の企画書と宣伝チラシ」に見立てて，生徒向けの改善フィードバックを作成してください。
+
+〈制約・調整条件〉
+・生徒のやる気を引き出すため，まずは良い点（強み）を具体的に褒めてから改善点を伝えてください。
+・「チラシの絵（イラスト）が発表内容と合っているか」「初めて見る人に魅力や要点が伝わるか」「企画書とチラシで情報の抜け漏れがないか」の3つの視点で助言してください。
+
+〈出力形式〉以下の3つのステップ順で出力してください。
+・［画面確認用：生徒向けフィードバックプレビュー］高校生にそのまま見せられる分かりやすい言葉と構成で表示してください。
+・［指導者向け：見取りと声かけのポイント］教員が生徒のポスター・チラシ指導を行う際に注目すべき視点を解説してください。
+・［ワークシート/Classroom コピペ用プレーンテキスト］マークダウン記号（#や**など）を使わず，そのまま貼り付けできるプレーンテキスト形式で出力してください。</pre>
+            </div>
+          </div>
+
+          <div class="dialogue-box">
+            <h4>💬 ■ 対話タイム</h4>
+            <p style="margin: 0;">
+              隣の人と成果物を共有し対話してください！<strong>（AIがチラシの絵をどう捉えて文章に活かしたか，2つの資料の表記ゆれをどう見つけたかも話題にしてみてください）</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 【ワーク３】 -->
+      <section id="work3" class="section-card">
+        <div class="section-header">
+          <h2><span class="section-tag">ワーク３</span>Gemini Notebook（NotebookLM）による「1ソース・マルチユース」展開</h2>
+        </div>
+        <div class="section-body">
+          <ul class="step-list">
+            <li><strong>〈ハルシネーション（AIの嘘）を防ぐ安全なAI利用のモデルケース〉</strong>生成AIを校務や授業で使う際，一番懸念されるのは「誤った情報を出力すること」と「確認に時間がかかること」です。Gemini Notebookは「アップロードした資料（一次ソース）の中身だけに基づいて回答する」という強い制限がかかるため，根拠のある正確な情報整理が可能になります。</li>
+            <li><strong>〈「教員が全パターンの資料を作る必要がなくなる」という本質的な業務改善〉</strong>PDF資料を1枚アップロードするだけで，「動画解説」「音声解説（ポッドキャスト）」「スライド資料」「インフォグラフィック」「レポート」「クイズ」「マインドマップ」などが芋づる式に生成できます。</li>
+            <li><strong>〈校務での応用例〉</strong>複数大学の入試要項PDFを読み込ませて出願条件や試験日を一覧比較したり，校内規定・会議資料から必要な情報だけを根拠付きで検索したりする用途でも高い効果を発揮します。</li>
+          </ul>
+
+          <div class="highlight-box" style="margin-top: 18px;">
+            <div class="highlight-box-title">📚 実践サンプル：新学習指導要領 Gemini Notebook</div>
+            <p style="margin: 0 0 12px 0;">
+              「次期学習指導要領等に向けた審議まとめ」のPDFを読み込ませることで，探究のカリキュラム設計・評価規準づくりから生徒向け解説・校内研修資料までが一元生成されます。
+            </p>
+            <a href="https://notebook.google.com/notebook/64d07b3c-b60c-4aba-8a03-97c7c39dd586" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              📓 新学習指導要領 NotebookLM を開く（新しいタブ）
+            </a>
+          </div>
+
+          <div class="multiuse-grid">
+            <div class="multiuse-item">
+              <strong>🎧 音声解説・動画解説</strong>
+              <span>「次期学習指導要領における探究的な学びのポイント解説音声/動画原稿」を作成（⇒ 教員の移動時間でのインプット，生徒へのガイダンス用教材の自動化）</span>
+            </div>
+            <div class="multiuse-item">
+              <strong>📝 クイズ・小テスト</strong>
+              <span>「探究の進め方や評価のポイントを確認する4択クイズ5問」を一瞬で作成（⇒ 生徒の理解度チェックや校内ミニ研修の題材づくり）</span>
+            </div>
+            <div class="multiuse-item">
+              <strong>📊 レポート・インフォグラフィック</strong>
+              <span>「次期学習指導要領が求める資質・能力と探究プロセスの1枚要約シート」を作成（⇒ 探究の手引き・授業プリント・通信の作成）</span>
+            </div>
+            <div class="multiuse-item">
+              <strong>🖥️ スライド構成案</strong>
+              <span>「生徒向け探究オリエンテーション用10分スライド構成案」を作成（⇒ 授業・ガイダンス用スライドづくりの時短）</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 【ワーク４】 -->
+      <section id="work4" class="section-card">
+        <div class="section-header">
+          <h2><span class="section-tag">ワーク４</span>生徒の思考を深める「AIコーチ（Gem・チャット共有）」作成</h2>
+        </div>
+        <div class="section-body">
+          <p>
+            「先生，テーマが決まりません」「次なにしていいか分かりません」と生徒から一斉に呼ばれて，身体が足りないと思ったことはありませんか？探究活動で生徒の思考を深めるために一番必要なのは，「生徒一人ひとりの考えに対する1対1の対話を重ねること（壁打ち）」です。しかし，10人以上の生徒全員と毎時間じっくり話すのは物理的に不可能です。だからこそ，AIに教員の代わりに「問いかけ役」になってもらいます。先生が教卓を離れて本当に手厚いサポートが必要な生徒の隣に座るために，生徒全員の横に<strong>「問いかけてくれる副担任（AIコーチ）」</strong>を座らせる仕組みを作りましょう！
+          </p>
+
+          <div class="highlight-box">
+            <div class="highlight-box-title">🤖 【Gem】カスタムボットとは</div>
+            <p style="margin: 0 0 12px 0;">
+              Gemとは，特定の役割やルールをあらかじめ記憶させ，自分専用のAIアシスタント（カスタムチャットボット）を作成・利用できる機能のことです。
+            </p>
+            <a href="https://gemini.google.com/gems/view?hl=ja" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              💎 Gemマネージャーを開く（新しいタブ）
+            </a>
+          </div>
+
+          <h3>■ メタ壁打ち（GeminiにGemの指示を作らせる）</h3>
+          <ul class="step-list">
+            <li><strong>mdファイル（拡張子 .md）とは：</strong>「見出しや箇条書きなどの構造をシンプルな記号で書いた，ただのテキストファイル（文字だけのデータ）」のことです。マークダウン（Markdown）と呼ばれる軽量な記述方式で作られており，Windowsの「メモ帳」などの標準的なテキストエディタで作成・編集できます。</li>
+            <li><strong>mdファイルを使うメリット：</strong>①<code>#</code>（見出し）や<code>-</code>（箇条書き）を使うことで章立てや構造がAIに正しく伝わる／②ファイルをドラッグ＆ドロップするだけでプロンプトの使い回しが簡単になる／③AIの回答自体もマークダウン形式で出力されるため相性が良い／④専用ソフトが不要。</li>
+          </ul>
+
+          <p><strong>〈メタ壁打ち用プロンプト〉</strong>Gemのカスタム指示文そのものをGeminiに作らせます。出力された指示をGemにコピー＆ペーストするだけで一瞬で初期版が完成します。</p>
+
+          <!-- メタ壁打ち① -->
+          <div class="prompt-block">
+            <div class="prompt-header">
+              <span class="prompt-title">● 課題の設定：テーマが広すぎる・決まらない生徒向け</span>
+              <button type="button" class="copy-btn" onclick="copyPrompt('prompt-w4-1', this)">📋 プロンプトをコピー</button>
+            </div>
+            <pre id="prompt-w4-1" class="prompt-text">高校生の「総合的な探究の時間」で，テーマが広すぎて絞れない生徒に対し，正解を教えずに問いかけを重ねてテーマを具体化させるGemを作りたいです。Gemの「カスタム指示」に入力するためのプロンプト（役割，トーン，行動ルール，出力フォーマット）をmdファイルで作成してください。</pre>
+          </div>
+
+          <!-- メタ壁打ち② -->
+          <div class="prompt-block">
+            <div class="prompt-header">
+              <span class="prompt-title">● 情報の収集：ネット検索だけで終わる・視点が偏る生徒向け</span>
+              <button type="button" class="copy-btn" onclick="copyPrompt('prompt-w4-2', this)">📋 プロンプトをコピー</button>
+            </div>
+            <pre id="prompt-w4-2" class="prompt-text">高校生の「総合的な探究の時間」で，ネット検索だけで満足したり，視点が偏ったりしている生徒に対し，新たな視点や足りないデータに自発的に気づかせるGemを作りたいです。Gemの「カスタム指示」に入力するためのプロンプト（役割，トーン，行動ルール，出力フォーマット）をmdファイルで作成してください。</pre>
+          </div>
+
+          <!-- メタ壁打ち③ -->
+          <div class="prompt-block">
+            <div class="prompt-header">
+              <span class="prompt-title">● 整理・分析：論理の飛躍がある・主張と根拠が繋がらない生徒向け</span>
+              <button type="button" class="copy-btn" onclick="copyPrompt('prompt-w4-3', this)">📋 プロンプトをコピー</button>
+            </div>
+            <pre id="prompt-w4-3" class="prompt-text">高校生の「総合的な探究の時間」で，データと主張の間の論理の飛躍や甘さをプロの視点から鋭く指摘し，1問1答で思考を深めさせるGemを作りたいです。Gemの「カスタム指示」に入力するためのプロンプト（役割，トーン，行動ルール，出力フォーマット）をmdファイルで作成してください。</pre>
+          </div>
+
+          <h3>〈テスト壁打ちと生徒への共有手順〉</h3>
+          <ul class="step-list">
+            <li><strong>テスト壁打ち：</strong>「優等生な入力」ではなく「投げやりな生徒」「見当違いな回答をする生徒」になりきってGemに入力してみてください。例えば，「テーマは平和です！」とだけ入力したときに，Gemが「もっと絞ろうか！例えば…」と適切にコーチングしてくれるかを体験すると，Gemの調整（チューニング）がしやすくなります。</li>
+            <li><strong>共有リンク（URL）の発行：</strong>「Gemマネージャー」で，作成したGemの横にある「共有」アイコン（または三点リーダー <code>⋮</code> →共有）をクリックします。共有範囲を「リンクを知っている全員」（または組織内）に設定し，「リンクをコピー」をクリックして配布します。</li>
+            <li><strong>■ カスタムAI機能（Gem・エージェント）を使わない方法：</strong>通常のチャットの1通目に指示文を貼り付けて送信し，AIから「準備完了」の返信が来たら，画面上の「共有」ボタンからチャットの共有リンク（URL）を発行して生徒に配る（またはプロンプト文章を共有し，生徒に1通目へ貼り付けさせる）ことで，どのツール環境（Gemini / Copilot / ChatGPT）でも同じように壁打ちを開始できます。</li>
+          </ul>
+
+          <div class="dialogue-box">
+            <h4>💬 ■ 対話タイム</h4>
+            <p style="margin: 0;">
+              ここまでのワークで，明日ご自身の業務や探究指導でまず試してみたい「AIの使い道」はどういったものですか？隣の人と対話してください！
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 【まとめ】 -->
+      <section id="summary" class="section-card">
+        <div class="section-header">
+          <h2><span class="section-tag">まとめ</span>AIを味方につけ，一生使える「教育資産」へ</h2>
+        </div>
+        <div class="section-body">
+          <ul class="step-list">
+            <li>AIを知っているか・知らないか，使えるか・使えないかで，みなさんのこれからの教員生活における<strong>「ゆとり」と「生徒と向き合う時間」</strong>は大きく変化します。AIという頼れる相棒を味方につけて，生まれたゆとりを丁寧な生徒サポートと，ご自身の専門性を高める学びの時間へと還元していってください！</li>
+            <li>Gemのプロンプトを<strong>mdファイルやテキストファイルで保存</strong>しておくと，AIの仕様が変わっても，言葉（プロンプト）さえ残しておけば一生使える先生方の教育資産になります。</li>
+          </ul>
+
+          <div style="margin-top: 16px;">
+            <a href="https://services.google.com/fh/files/misc/ja_gemini_gems_skills_transition_guide.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              📄 Gemini Gemからスキルへの移行ガイド（PDFを開く）
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- 画像拡大モーダル -->
+  <div id="imageModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <span id="modalTitle">画像プレビュー</span>
+        <button type="button" class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImg" src="" alt="拡大プレビュー">
+      </div>
+    </div>
+  </div>
+
+  <!-- コピー完了トースト -->
+  <div id="toast" class="toast">✅ プロンプトをクリップボードにコピーしました！</div>
+
+  <footer class="site-footer">
+    20261118【高等学校DX加速化推進事業・生成AIパイロット校・三菱みらい育成財団】第2回成果報告会「星陵Day」研修会 ポータルサイト<br>
+    兵庫県立星陵高等学校
+  </footer>
+
+  <script>
+    // プロンプトワンクリックコピー機能
+    function copyPrompt(elementId, buttonEl) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = buttonEl.innerText;
+        buttonEl.innerText = "✅ コピー完了！";
+        buttonEl.classList.add("copied");
+        showToast();
+        setTimeout(() => {
+          buttonEl.innerText = originalText;
+          buttonEl.classList.remove("copied");
+        }, 2000);
+      }).catch(() => {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        showToast();
+      });
+    }
+
+    function showToast() {
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2400);
+    }
+
+    // ワーク2 選択式プロンプトのタブ切り替え
+    function switchTab(panelId, btnEl) {
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.getElementById(panelId).classList.add("active");
+      btnEl.classList.add("active");
+    }
+
+    // 画像拡大モーダル制御
+    function openModal(imgSrc, title) {
+      document.getElementById("modalImg").src = imgSrc;
+      document.getElementById("modalTitle").innerText = title;
+      document.getElementById("imageModal").classList.add("open");
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").classList.remove("open");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  </script>
+</body>
+</html>
